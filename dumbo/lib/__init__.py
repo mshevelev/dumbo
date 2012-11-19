@@ -125,7 +125,7 @@ class MultiMapper(object):
     def __call__normalkey(self, data):
         mappers = self.mappers
         for key, value in data:
-            path, key = key
+            path = key[0]
             for pattern, mapper in mappers:
                 if pattern in path:
                     for output in mapper(key, value):
@@ -135,7 +135,6 @@ class MultiMapper(object):
         mappers = self.mappers
         for key, value in data:
             path = key.body[0]
-            key.body = key.body[1]
             for pattern, mapper in mappers:
                 if pattern in path:
                     for output in mapper(key, value):
